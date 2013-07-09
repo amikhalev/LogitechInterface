@@ -5,7 +5,8 @@ using System.Runtime.InteropServices;
 namespace LogitechInterface
 {
     /// <summary>
-    ///     A C# interface for the LCD and the buttons on Logitech G-Series Devices. Supports all devices up to the G19
+    ///     A C# interface for the LCD and the buttons on Logitech G-Series Devices. Supports all devices up to the G19. To use, create a new instance of
+    ///     <see cref="LogitechLcd"/> and call <see cref="LcdUpdate"/> every frame in your main loop.
     /// </summary>
     /// <author email="alexmikhalevalex@gmail.com">Alex Mikhalev</author>
     public class LogitechLcd
