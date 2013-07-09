@@ -326,8 +326,15 @@ namespace LogitechInterface
                 throw new ArgumentNullException("monochromeBitmap");
             if (monochromeBitmap.Width != MonochromeLcdWidth || monochromeBitmap.Height != MonochromeLcdHeight)
                 throw new ArgumentException("Invalid bitmap size", "monochromeBitmap");
-            //TODO fix this
-            return LcdMonoSetBackground((byte[]) new ImageConverter().ConvertTo(monochromeBitmap, typeof (byte[])));
+            var byteMap = new byte[MonochromeLcdWidth * MonochromeLcdHeight];
+            for (int x = 0; x < MonochromeLcdWidth; x++)
+            {
+                for (int y = 0; y < MonochromeLcdHeight; y++)
+                {
+                    byteMap[x*MonochromeLcdHeight + y] = (byte) Math.Floor(monochromeBitmap.GetPixel(x, y).GetBrightness());
+                }
+            }
+            return LcdMonoSetBackground(byteMap);
         }
 
         /// <summary>
@@ -339,7 +346,7 @@ namespace LogitechInterface
         public bool LcdMonoSetText(int lineNumber, string text)
         {
             if (lineNumber < 0 || lineNumber > 3)
-                throw new ArgumentOutOfRangeException("lineNumber", "The line number must be from 0 - 7");
+                throw new ArgumentOutOfRangeException("lineNumber", "The line number must be from 0 - 3");
             return NativeMethods.LogiLcdMonoSetText(lineNumber, text);
         }
 
