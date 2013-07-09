@@ -1,0 +1,293 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>LogitechInterface</name>
+    </assembly>
+    <members>
+        <member name="T:LogitechInterface.LogitechLcd">
+            <summary>
+                A C# interface for the LCD and the buttons on Logitech G-Series Devices. Supports all devices up to the G19
+            </summary>
+            <author email="alexmikhalevalex@gmail.com">Alex Mikhalev</author>
+        </member>
+        <member name="F:LogitechInterface.LogitechLcd.MonochromeLcdWidth">
+            <summary>
+                The width, in pixles, of all Logitech monochrome LCD's
+            </summary>
+        </member>
+        <member name="F:LogitechInterface.LogitechLcd.MonochromeLcdHeight">
+            <summary>
+                The height, in pixles, of all Logitech monochrome LCD's
+            </summary>
+        </member>
+        <member name="F:LogitechInterface.LogitechLcd.ColorLcdWidth">
+            <summary>
+                The width, in pixles, of all Logitech color LCD's
+            </summary>
+        </member>
+        <member name="F:LogitechInterface.LogitechLcd.ColorLcdHeight">
+            <summary>
+                The height, in pixles, of all Logitech color LCD's
+            </summary>
+        </member>
+        <member name="M:LogitechInterface.LogitechLcd.#ctor(System.String,LogitechInterface.LogitechLcd.LcdType)">
+            <summary>
+                Initializes the connection to the Logitech G-Series device. Must be called before any other function in this library
+            </summary>
+            <param name="freindlyName">The human-readable name of the LCD applet. Cannot be changed after initialization</param>
+            <param name="lcdType">
+                The type of LCD to initialize to. Can be one of the following:
+                <list type="bullet">
+                    <item>
+                        <term>
+                            <see cref="F:LogitechInterface.LogitechLcd.LcdType.Monochrome"/>
+                        </term>
+                        <description>Only Logitech Monochrome LCD devices (G510, G13, G15 v1 and v2)</description>
+                    </item>
+                    <item>
+                        <term>
+                            <see cref="F:LogitechInterface.LogitechLcd.LcdType.Color"/>
+                        </term>
+                        <description>Only Logitech Color LCD devices (G19)</description>
+                    </item>
+                    <item>
+                        <term>
+                            <see cref="F:LogitechInterface.LogitechLcd.LcdType.Both"/>
+                        </term>
+                        <description>Both color and monochrome LCD devices</description>
+                    </item>
+                </list>
+            </param>
+            <seealso cref="T:LogitechInterface.LogitechLcd.LcdType"/>
+            <returns>True if successful, false if not</returns>
+        </member>
+        <member name="M:LogitechInterface.LogitechLcd.LcdIsConnected(LogitechInterface.LogitechLcd.LcdType)">
+            <summary>
+                Checks if a Logitech G-Series device is connected
+            </summary>
+            <param name="lcdType">
+                The type of LCD to check the connection to. Can be one of the following:
+                <list type="bullet">
+                    <item>
+                        <term>
+                            <see cref="F:LogitechInterface.LogitechLcd.LcdType.Monochrome"/>
+                        </term>
+                        <description>Only Logitech Monochrome LCD devices (G510, G13, G15 v1 and v2)</description>
+                    </item>
+                    <item>
+                        <term>
+                            <see cref="F:LogitechInterface.LogitechLcd.LcdType.Color"/>
+                        </term>
+                        <description>Only Logitech Color LCD devices (G19)</description>
+                    </item>
+                    <item>
+                        <term>
+                            <see cref="F:LogitechInterface.LogitechLcd.LcdType.Both"/>
+                        </term>
+                        <description>Both color and monochrome LCD devices</description>
+                    </item>
+                </list>
+            </param>
+            <seealso cref="T:LogitechInterface.LogitechLcd.LcdType"/>
+            <returns>True if a specified device is connected, false if not</returns>
+        </member>
+        <member name="M:LogitechInterface.LogitechLcd.LcdIsButtonPressed(LogitechInterface.LogitechLcd.LcdButton)">
+            <summary>
+                Checks if a specified button on a Logitech G-Series device is pressed
+            </summary>
+            <param name="button">
+                The button to check the state of
+            </param>
+            <seealso cref="T:LogitechInterface.LogitechLcd.LcdButton"/>
+            <returns>True if the specified button is pressed, false if not</returns>
+        </member>
+        <member name="M:LogitechInterface.LogitechLcd.LcdUpdate">
+            <summary>
+                Updates the LCD display on a Logitech G-Series device. Should be called every frame in your main loop.
+            </summary>
+        </member>
+        <member name="M:LogitechInterface.LogitechLcd.LcdShutdown">
+            <summary>
+                Kills the applet and frees the memory used.
+            </summary>
+        </member>
+        <member name="M:LogitechInterface.LogitechLcd.Finalize">
+            <summary>
+                Destroy
+            </summary>
+        </member>
+        <member name="M:LogitechInterface.LogitechLcd.LcdMonoSetBackground(System.Byte[])">
+            <summary>
+                Sets the specified bitmap image as the background on the monochrome LCD
+            </summary>
+            <param name="monochromBitmap">
+                The array of pixles to display on the device. It is organized as a rectangular area, 160 bytes wide
+                and 43 bytes high. 255 is white and 0 is black. The array should be 6,880 bytes long.
+            </param>
+            <returns>True if successful, false if not</returns>
+        </member>
+        <member name="M:LogitechInterface.LogitechLcd.LcdMonoSetBackground(System.Drawing.Bitmap)">
+            <summary>
+                Sets the specified bitmap image as the background on the monochrome lcd
+            </summary>
+            <param name="monochromeBitmap">
+                The <see cref="T:System.Drawing.Bitmap"/> image to display on the LCD
+            </param>
+            <returns>True if successful, false if not</returns>
+        </member>
+        <member name="M:LogitechInterface.LogitechLcd.LcdMonoSetText(System.Int32,System.String)">
+            <summary>
+                Sets the text displayed on a specific line on the display
+            </summary>
+            <param name="lineNumber">The line on the screen that the text will appear on. There are 4 lines, so this can be 0-3.</param>
+            <param name="text">The text to display</param>
+            <returns>True if successful, false if not</returns>
+        </member>
+        <member name="M:LogitechInterface.LogitechLcd.LcdColorSetBackground(System.Byte[])">
+            <summary>
+                Sets the specified bitmap image as the background on the color LCd
+            </summary>
+            <param name="colorBitmap">
+                The array of pixles to display on the device. 320 bytes wide by 240 bytes high. Since the color
+                LCD can display full color, 4 bytes per picture are used. The size of the bitmap is 320x240x4 = 307200. The bytes are arranged like this:
+                <para> Pixel 0, 0   ... Pixel 319, 0   </para>
+                <para>   B G R A    ...   B G R A      </para>
+                <para>     ...      ...      ...        </para>
+                <para> Pixel 0, 239 ... Pixel 319, 239 </para>
+                <para>   B G R A    ...   B G R A      </para>
+                <para>B - Blue 0 - 255</para>
+                <para>G - Green 0 - 255</para>
+                <para>R - Red 0 - 255</para>
+                A - Alpha 0 - 255
+            </param>
+            <returns>True if successful, false if not</returns>
+        </member>
+        <member name="M:LogitechInterface.LogitechLcd.LcdColorSetBackground(System.Drawing.Bitmap)">
+            <summary>
+                Sets the specified bitmap image as the background on the color LCd
+            </summary>
+            <param name="colorBitmap">
+                The <see cref="T:System.Drawing.Bitmap"/> to display
+            </param>
+            <returns>True if successful, false if not</returns>
+        </member>
+        <member name="M:LogitechInterface.LogitechLcd.LcdColorSetTitle(System.String,System.Int32,System.Int32,System.Int32)">
+            <summary>
+                Sets the specified text in the first line on the color LCD device. The font size will be larger than the one used on the other lines.
+            </summary>
+            <param name="text">The text to be displayed</param>
+            <param name="red">The red component of the color of the text, 0 - 255</param>
+            <param name="green">The green component of the color of the text, 0 - 255</param>
+            <param name="blue">The blue component of the color of the text, 0 - 255</param>
+            <returns>True if successful, false if not</returns>
+        </member>
+        <member name="M:LogitechInterface.LogitechLcd.LcdColorSetTitle(System.String,System.Drawing.Color)">
+            <summary>
+                Sets the specified text in the first line on the color LCD device. The font size will be larger than the one used on the other lines.
+            </summary>
+            <param name="text">The text to be displayed</param>
+            <param name="color">The color of the text</param>
+            <returns>True if successful, false if not</returns>
+        </member>
+        <member name="M:LogitechInterface.LogitechLcd.LcdColorSetText(System.Int32,System.String,System.Int32,System.Int32,System.Int32)">
+            <summary>
+                Sets the specified text on the requested line on the color LCD device.
+            </summary>
+            <param name="lineNumber">The line on the screen that the text will appear on. There are 8 lines, so this is 0-7</param>
+            <param name="text">The text to be displayed</param>
+            <param name="red">The red component of the color of the text, 0 - 255</param>
+            <param name="green">The green component of the color of the text, 0 - 255</param>
+            <param name="blue">The blue component of the color of the text, 0 - 255</param>
+            <returns></returns>
+        </member>
+        <member name="M:LogitechInterface.LogitechLcd.LcdColorSetText(System.Int32,System.String,System.Drawing.Color)">
+            <summary>
+                Sets the specified text on the requested line on the color LCD device.
+            </summary>
+            <param name="lineNumber">The line on the screen that the text will appear on. There are 8 lines, so this is 0-7</param>
+            <param name="text">The text to be displayed</param>
+            <param name="color">The color of the text</param>
+            <returns>True if successful, false if no</returns>
+        </member>
+        <member name="T:LogitechInterface.LogitechLcd.LcdButton">
+            <summary>
+                An enum of buttons on Logitech G-Series devices
+            </summary>
+        </member>
+        <member name="F:LogitechInterface.LogitechLcd.LcdButton.Monochrome0">
+            <summary>
+                Monochrome LCD button 1
+            </summary>
+        </member>
+        <member name="F:LogitechInterface.LogitechLcd.LcdButton.Monochrome1">
+            <summary>
+                Monochrome LCD button 2
+            </summary>
+        </member>
+        <member name="F:LogitechInterface.LogitechLcd.LcdButton.Monochrome2">
+            <summary>
+                Monochrome LCD button 3
+            </summary>
+        </member>
+        <member name="F:LogitechInterface.LogitechLcd.LcdButton.Monochrome3">
+            <summary>
+                Monochrome LCD button 4
+            </summary>
+        </member>
+        <member name="F:LogitechInterface.LogitechLcd.LcdButton.ColorUp">
+            <summary>
+                Color LCD up button
+            </summary>
+        </member>
+        <member name="F:LogitechInterface.LogitechLcd.LcdButton.ColorDown">
+            <summary>
+                Color LCD down button
+            </summary>
+        </member>
+        <member name="F:LogitechInterface.LogitechLcd.LcdButton.ColorLeft">
+            <summary>
+                Color LCD left button
+            </summary>
+        </member>
+        <member name="F:LogitechInterface.LogitechLcd.LcdButton.ColorRight">
+            <summary>
+                Color LCD right button
+            </summary>
+        </member>
+        <member name="F:LogitechInterface.LogitechLcd.LcdButton.ColorOk">
+            <summary>
+                Color LCD ok button
+            </summary>
+        </member>
+        <member name="F:LogitechInterface.LogitechLcd.LcdButton.ColorCancel">
+            <summary>
+                Color LCD cancel button
+            </summary>
+        </member>
+        <member name="F:LogitechInterface.LogitechLcd.LcdButton.ColorMenu">
+            <summary>
+                Color LCD menu button
+            </summary>
+        </member>
+        <member name="T:LogitechInterface.LogitechLcd.LcdType">
+            <summary>
+                An enum of Logitech LCD Types on Logitech G-Series Devices
+            </summary>
+        </member>
+        <member name="F:LogitechInterface.LogitechLcd.LcdType.Monochrome">
+            <summary>
+                Logitech Monochome LCD (Logitech G510, G13, G15 v1 and v2)
+            </summary>
+        </member>
+        <member name="F:LogitechInterface.LogitechLcd.LcdType.Color">
+            <summary>
+                Logitech Color LCD (Logitech G19)
+            </summary>
+        </member>
+        <member name="F:LogitechInterface.LogitechLcd.LcdType.Both">
+            <summary>
+                Both Logitech color and monochrome LCD's
+            </summary>
+        </member>
+    </members>
+</doc>

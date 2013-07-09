@@ -289,6 +289,9 @@ namespace LogitechInterface
             NativeMethods.LogiLcdShutdown();
         }
 
+        /// <summary>
+        ///     Destroy
+        /// </summary>
         ~LogitechLcd()
         {
             LcdShutdown();
