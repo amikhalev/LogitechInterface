@@ -222,6 +222,7 @@ namespace LogitechInterface
         /// <returns>True if successful, false if not</returns>
         public LogitechLcd(string freindlyName, LcdType lcdType)
         {
+            DynamicLoading.EnableDynamicLoading("LogitechInterface", "x64");
             if (!NativeMethods.LogiLcdInit(freindlyName, (int) lcdType))
             {
                 throw new ExternalException("Error initializing LCD");
