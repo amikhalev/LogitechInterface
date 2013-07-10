@@ -6,7 +6,8 @@
     <members>
         <member name="T:LogitechInterface.LogitechLcd">
             <summary>
-                A C# interface for the LCD and the buttons on Logitech G-Series Devices. Supports all devices up to the G19
+                A C# interface for the LCD and the buttons on Logitech G-Series Devices. Supports all devices up to the G19. To use, create a new instance of
+                <see cref="T:LogitechInterface.LogitechLcd"/> and call <see cref="M:LogitechInterface.LogitechLcd.LcdUpdate"/> every frame in your main loop.
             </summary>
             <author email="alexmikhalevalex@gmail.com">Alex Mikhalev</author>
         </member>
@@ -28,6 +29,11 @@
         <member name="F:LogitechInterface.LogitechLcd.ColorLcdHeight">
             <summary>
                 The height, in pixles, of all Logitech color LCD's
+            </summary>
+        </member>
+        <member name="M:LogitechInterface.LogitechLcd.#cctor">
+            <summary>
+            Enable dynamic DLL loading
             </summary>
         </member>
         <member name="M:LogitechInterface.LogitechLcd.#ctor(System.String,LogitechInterface.LogitechLcd.LcdType)">
@@ -287,6 +293,35 @@
         <member name="F:LogitechInterface.LogitechLcd.LcdType.Both">
             <summary>
                 Both Logitech color and monochrome LCD's
+            </summary>
+        </member>
+        <member name="M:LogitechInterface.DynamicLoading.EnableDynamicLoading(System.String,System.String)">
+            <summary>
+                Enables dynamic loading of DLL's from embeded resources
+            </summary>
+            <param name="prefix">
+                A string to add to the begining for namespace names. Should be in the format
+                <c>"NamespaceName"</c>
+            </param>
+            <param name="x64Extension">
+                An extension to insert between the resource name and the file extension
+                if the process is running in 64-bit mode. Input a blank string if not needed.
+            </param>
+        </member>
+        <member name="T:LogitechInterface.Properties.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:LogitechInterface.Properties.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:LogitechInterface.Properties.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
             </summary>
         </member>
     </members>
