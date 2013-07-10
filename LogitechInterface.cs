@@ -192,6 +192,15 @@ namespace LogitechInterface
         #region Functions
 
         /// <summary>
+        /// Enable dynamic DLL loading
+        /// </summary>
+        static LogitechLcd()
+        {
+            DynamicLoading.EnableDynamicLoading("LogitechInterface", "x64");
+            
+        }
+
+        /// <summary>
         ///     Initializes the connection to the Logitech G-Series device. Must be called before any other function in this library
         /// </summary>
         /// <param name="freindlyName">The human-readable name of the LCD applet. Cannot be changed after initialization</param>
@@ -222,7 +231,6 @@ namespace LogitechInterface
         /// <returns>True if successful, false if not</returns>
         public LogitechLcd(string freindlyName, LcdType lcdType)
         {
-            DynamicLoading.EnableDynamicLoading("LogitechInterface", "x64");
             if (!NativeMethods.LogiLcdInit(freindlyName, (int) lcdType))
             {
                 throw new ExternalException("Error initializing LCD");
