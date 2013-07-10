@@ -4,7 +4,7 @@ using System.Reflection;
 
 namespace LogitechInterface
 {
-    internal class DynamicLoading
+    public class DynamicLoading
     {
         /// <summary>
         ///     Enables dynamic loading of DLL's from embeded resources
