@@ -198,7 +198,7 @@ namespace LogitechInterface
         /// </summary>
         static LogitechLcd()
         {
-            string internalResourceName = (IntPtr.Size == 8)
+            string internalResourceName = (IntPtr.Size == 4)
                                               ? "LogitechInterface.LogitechLcd.dll"
                                               : "LogitechInterface.LogitechLcdx64.dll";
             ResourceExtractor.ExtractResourceToFile(internalResourceName, NativeMethods.LogitechLcdDll);
