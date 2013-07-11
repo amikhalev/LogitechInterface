@@ -78,12 +78,12 @@
     <Compile Include="ResourceExtractor.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="LogitechLcd.dll">
+    <EmbeddedResource Include="LogitechLcd.dll">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Content>
-    <Content Include="LogitechLcdx64.dll">
+    </EmbeddedResource>
+    <EmbeddedResource Include="LogitechLcdx64.dll">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Content>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">
