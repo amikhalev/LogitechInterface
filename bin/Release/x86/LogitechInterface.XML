@@ -295,19 +295,6 @@
                 Both Logitech color and monochrome LCD's
             </summary>
         </member>
-        <member name="M:LogitechInterface.DynamicLoading.EnableDynamicLoading(System.String,System.String)">
-            <summary>
-                Enables dynamic loading of DLL's from embeded resources
-            </summary>
-            <param name="prefix">
-                A string to add to the begining for namespace names. Should be in the format
-                <c>"NamespaceName"</c>
-            </param>
-            <param name="x64Extension">
-                An extension to insert between the resource name and the file extension
-                if the process is running in 64-bit mode. Input a blank string if not needed.
-            </param>
-        </member>
         <member name="T:LogitechInterface.Properties.Resources">
             <summary>
               A strongly-typed resource class, for looking up localized strings, etc.
@@ -323,6 +310,18 @@
               Overrides the current thread's CurrentUICulture property for all
               resource lookups using this strongly typed resource class.
             </summary>
+        </member>
+        <member name="T:LogitechInterface.ResourceExtractor">
+            <summary>
+            A class for extracting embeded resources
+            </summary>
+        </member>
+        <member name="M:LogitechInterface.ResourceExtractor.ExtractResourceToFile(System.String,System.String)">
+            <summary>
+            Extracts a resource "resourceName" into "fileName"
+            </summary>
+            <param name="resourceName">The resource name to extract</param>
+            <param name="fileName">The file name to extract to</param>
         </member>
     </members>
 </doc>

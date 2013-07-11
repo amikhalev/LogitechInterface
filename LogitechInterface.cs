@@ -41,42 +41,44 @@ namespace LogitechInterface
 
             // Color LCD size
             public const int LOGI_LCD_COLOR_WIDTH = 320;
-            public const int LOGI_LCD_COLOR_HEIGHT = 240;
+            public const int LOGI_LCD_COLOR_HEIGHT = 240;            
             // ReSharper restore InconsistentNaming
 
             #endregion
 
             #region Internal Functions
 
-            [DllImport("LogitechLcd.dll", CallingConvention = CallingConvention.Cdecl)]
+            public const string LogitechLcdDll = "LogitechLcd.dll";
+
+            [DllImport(LogitechLcdDll, CallingConvention = CallingConvention.Cdecl)]
             public static extern bool LogiLcdInit([MarshalAs(UnmanagedType.LPWStr)] string freindlyName, int lcdtype);
 
-            [DllImport("LogitechLcd.dll", CallingConvention = CallingConvention.Cdecl)]
+            [DllImport(LogitechLcdDll, CallingConvention = CallingConvention.Cdecl)]
             public static extern bool LogiLcdIsConnected(int lcdtype);
 
-            [DllImport("LogitechLcd.dll", CallingConvention = CallingConvention.Cdecl)]
+            [DllImport(LogitechLcdDll, CallingConvention = CallingConvention.Cdecl)]
             public static extern bool LogiLcdIsButtonPressed(int button);
 
-            [DllImport("LogitechLcd.dll", CallingConvention = CallingConvention.Cdecl)]
+            [DllImport(LogitechLcdDll, CallingConvention = CallingConvention.Cdecl)]
             public static extern void LogiLcdUpdate();
 
-            [DllImport("LogitechLcd.dll", CallingConvention = CallingConvention.Cdecl)]
+            [DllImport(LogitechLcdDll, CallingConvention = CallingConvention.Cdecl)]
             public static extern void LogiLcdShutdown();
 
-            [DllImport("LogitechLcd.dll", CallingConvention = CallingConvention.Cdecl)]
+            [DllImport(LogitechLcdDll, CallingConvention = CallingConvention.Cdecl)]
             public static extern bool LogiLcdMonoSetBackground(byte[] monoBitmap);
 
-            [DllImport("LogitechLcd.dll", CallingConvention = CallingConvention.Cdecl)]
+            [DllImport(LogitechLcdDll, CallingConvention = CallingConvention.Cdecl)]
             public static extern bool LogiLcdMonoSetText(int lineNumber, [MarshalAs(UnmanagedType.LPWStr)] string text);
 
-            [DllImport("LogitechLcd.dll", CallingConvention = CallingConvention.Cdecl)]
+            [DllImport(LogitechLcdDll, CallingConvention = CallingConvention.Cdecl)]
             public static extern bool LogiLcdColorSetBackground(byte[] colorBitmap);
 
-            [DllImport("LogitechLcd.dll", CallingConvention = CallingConvention.Cdecl)]
+            [DllImport(LogitechLcdDll, CallingConvention = CallingConvention.Cdecl)]
             public static extern bool LogiLcdColorSetTitle([MarshalAs(UnmanagedType.LPWStr)] string text, int red,
                                                            int green, int blue);
 
-            [DllImport("LogitechLcd.dll", CallingConvention = CallingConvention.Cdecl)]
+            [DllImport(LogitechLcdDll, CallingConvention = CallingConvention.Cdecl)]
             public static extern bool LogiLcdColorSetText(int lineNumber, [MarshalAs(UnmanagedType.LPWStr)] string text,
                                                           int red, int green, int blue);
 
@@ -196,8 +198,10 @@ namespace LogitechInterface
         /// </summary>
         static LogitechLcd()
         {
-            DynamicLoading.EnableDynamicLoading("LogitechInterface", "x64");
-            
+            string internalResourceName = (IntPtr.Size == 4)
+                                              ? "LogitechInterface.LogitechLcd.dll"
+                                              : "LogitechInterface.LogitechLcdx64.dll";
+            ResourceExtractor.ExtractResourceToFile(internalResourceName, NativeMethods.LogitechLcdDll);
         }
 
         /// <summary>
