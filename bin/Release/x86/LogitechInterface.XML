@@ -4,18 +4,6 @@
         <name>LogitechInterface</name>
     </assembly>
     <members>
-        <member name="T:LogitechInterface.ResourceExtractor">
-            <summary>
-            A class for extracting embeded resources
-            </summary>
-        </member>
-        <member name="M:LogitechInterface.ResourceExtractor.ExtractResourceToFile(System.String,System.String)">
-            <summary>
-            Extracts a resource "resourceName" into "fileName"
-            </summary>
-            <param name="resourceName">The resource name to extract</param>
-            <param name="fileName">The file name to extract to</param>
-        </member>
         <member name="T:LogitechInterface.LogitechLcd">
             <summary>
                 A C# interface for the LCD and the buttons on Logitech G-Series Devices. Supports all devices up to the G19. To use, create a new instance of
@@ -52,7 +40,7 @@
             <summary>
                 Initializes the connection to the Logitech G-Series device. Must be called before any other function in this library
             </summary>
-            <param name="freindlyName">The human-readable name of the LCD applet. Cannot be changed after initialization</param>
+            <param name="friendlyName">The human-readable name of the LCD applet. Cannot be changed after initialization</param>
             <param name="lcdType">
                 The type of LCD to initialize to. Can be one of the following:
                 <list type="bullet">
@@ -322,6 +310,18 @@
               Overrides the current thread's CurrentUICulture property for all
               resource lookups using this strongly typed resource class.
             </summary>
+        </member>
+        <member name="T:LogitechInterface.ResourceExtractor">
+            <summary>
+            A class for extracting embeded resources
+            </summary>
+        </member>
+        <member name="M:LogitechInterface.ResourceExtractor.ExtractResourceToFile(System.String,System.String)">
+            <summary>
+            Extracts a resource "resourceName" into "fileName"
+            </summary>
+            <param name="resourceName">The resource name to extract</param>
+            <param name="fileName">The file name to extract to</param>
         </member>
     </members>
 </doc>

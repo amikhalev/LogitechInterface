@@ -51,7 +51,7 @@ namespace LogitechInterface
             public const string LogitechLcdDll = "LogitechLcd.dll";
 
             [DllImport(LogitechLcdDll, CallingConvention = CallingConvention.Cdecl)]
-            public static extern bool LogiLcdInit([MarshalAs(UnmanagedType.LPWStr)] string freindlyName, int lcdtype);
+            public static extern bool LogiLcdInit([MarshalAs(UnmanagedType.LPWStr)] string friendlyName, int lcdtype);
 
             [DllImport(LogitechLcdDll, CallingConvention = CallingConvention.Cdecl)]
             public static extern bool LogiLcdIsConnected(int lcdtype);
@@ -207,7 +207,7 @@ namespace LogitechInterface
         /// <summary>
         ///     Initializes the connection to the Logitech G-Series device. Must be called before any other function in this library
         /// </summary>
-        /// <param name="freindlyName">The human-readable name of the LCD applet. Cannot be changed after initialization</param>
+        /// <param name="friendlyName">The human-readable name of the LCD applet. Cannot be changed after initialization</param>
         /// <param name="lcdType">
         ///     The type of LCD to initialize to. Can be one of the following:
         ///     <list type="bullet">
@@ -233,9 +233,9 @@ namespace LogitechInterface
         /// </param>
         /// <seealso cref="LcdType" />
         /// <returns>True if successful, false if not</returns>
-        public LogitechLcd(string freindlyName, LcdType lcdType)
+        public LogitechLcd(string friendlyName, LcdType lcdType)
         {
-            if (!NativeMethods.LogiLcdInit(freindlyName, (int) lcdType))
+            if (!NativeMethods.LogiLcdInit(friendlyName, (int) lcdType))
             {
                 throw new ExternalException("Error initializing LCD");
             }
